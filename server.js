@@ -23,9 +23,12 @@ app.use(limiter);
 app.use(cors({
   origin: [
     process.env.FRONTEND_URL || 'http://localhost:3000',
-    'https://wellness-platform-frontend.vercel.app/' // Add your Vercel domain
+    'https://wellness-platform-frontend.vercel.app' // Add your Vercel domain
   ],
-  credentials: true
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200
 }));
 
 app.use(express.json({ limit: '10mb' }));
